@@ -13,103 +13,86 @@
     :root {
       --primary: #8B6914;
       --secondary: #F5F0E8;
-      --primary-dark: #6B4F0E;
-      --primary-light: #C4960E;
       --gold: #D4AF37;
     }
-    .bg-primary { background-color: var(--primary); }
-    .bg-secondary { background-color: var(--secondary); }
-    .text-primary { color: var(--primary); }
-    .border-primary { border-color: var(--primary); }
+    .gold-gradient { background: linear-gradient(135deg, #8B6914 0%, #D4AF37 50%, #8B6914 100%); }
     .hero-bg {
       background: linear-gradient(135deg, #2C1810 0%, #4A2C12 40%, #8B6914 100%);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .hero-bg::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='2' fill='%23D4AF37' opacity='0.15'/%3E%3C/svg%3E") repeat;
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='2' fill='%23D4AF37' opacity='0.12'/%3E%3C/svg%3E") repeat;
     }
-    .gold-gradient {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 50%, var(--primary) 100%);
-    }
-    .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(139, 105, 20, 0.2);
-    }
-    .nav-link {
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
     .section-divider {
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      width: 80px; height: 3px;
+      background: linear-gradient(90deg, transparent, #8B6914, transparent);
       margin: 0 auto;
     }
-    .lotus-icon { font-size: 1.5rem; }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(139,105,20,0.2); }
+    .nav-link { position: relative; transition: color 0.3s ease; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+      background: #D4AF37; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active::after { width: 100%; }
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(44,24,16,0.95);
+    }
     .floating-lotus {
-      position: absolute;
-      opacity: 0.06;
-      font-size: 8rem;
+      position: absolute; opacity: 0.06; font-size: 8rem;
       animation: floatLotus 8s ease-in-out infinite;
     }
     @keyframes floatLotus {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      0%,100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(5deg); }
     }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--primary), transparent);
-    }
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .scroll-reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .scroll-reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .scroll-reveal.visible { opacity:1; transform:translateY(0); }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
     #mobileMenu { display: none; }
     #mobileMenu.open { display: block; }
-    .sticky-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      background: rgba(44, 24, 16, 0.95);
+
+    /* Logo image styling */
+    .logo-img {
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover;
+    }
+    .logo-img-large {
+      width: 96px; height: 96px; border-radius: 50%;
+      object-fit: cover;
+    }
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.35;
+    }
+    .img-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #8B6914, #D4AF37);
+      color: white; font-weight: bold;
     }
   </style>
 </head>
-<body class="bg-secondary">
+<body style="background-color:#F5F0E8;">
 
   <!-- Navigation -->
   <nav class="sticky-nav shadow-lg">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold text-lg shadow-md">ธ</div>
+      <a href="#" onclick="showPage('home')" class="flex items-center gap-3">
+        <!-- Logo: try GitHub raw URL first, fallback to text placeholder -->
+        <img
+          src="https://raw.githubusercontent.com/Purivaro/Dhammakaya-Tennessee-Temple/main/LOGO_2_1.png"
+          alt="โลโก้วัดพระธรรมกายเทนเนสซี"
+          class="logo-img shadow-md"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="logo-img shadow-md gold-gradient img-placeholder text-lg" style="display:none;">ธ</div>
         <div>
           <div class="text-white font-bold text-sm leading-tight">วัดพระธรรมกายเทนเนสซี</div>
           <div class="text-yellow-300 text-xs">Dhammakaya Tennessee Temple</div>
@@ -117,14 +100,14 @@
       </a>
       <!-- Desktop Menu -->
       <div class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="nav-link text-white font-medium text-sm">หน้าแรก</a>
-        <a href="#about" class="nav-link text-white font-medium text-sm">เกี่ยวกับเรา</a>
-        <a href="#schedule" class="nav-link text-white font-medium text-sm">กิจกรรม</a>
-        <a href="#gallery" class="nav-link text-white font-medium text-sm">แกลเลอรี</a>
-        <a href="page.html" class="nav-link text-white font-medium text-sm">เจดีย์</a>
-        <a href="#contact" class="bg-yellow-600 hover:bg-yellow-500 text-white font-medium text-sm px-4 py-2 rounded-full transition">ติดต่อเรา</a>
+        <a href="#" onclick="showPage('home')" id="nav-home" class="nav-link active text-white font-medium text-sm">หน้าแรก</a>
+        <a href="#" onclick="showPage('home'); setTimeout(()=>scrollTo('about'),100);" class="nav-link text-white font-medium text-sm">เกี่ยวกับเรา</a>
+        <a href="#" onclick="showPage('home'); setTimeout(()=>scrollTo('schedule'),100);" class="nav-link text-white font-medium text-sm">กิจกรรม</a>
+        <a href="#" onclick="showPage('home'); setTimeout(()=>scrollTo('gallery'),100);" class="nav-link text-white font-medium text-sm">แกลเลอรี</a>
+        <a href="#" onclick="showPage('stupa')" id="nav-stupa" class="nav-link text-white font-medium text-sm">เจดีย์</a>
+        <a href="#" onclick="showPage('home'); setTimeout(()=>scrollTo('contact'),100);" class="bg-yellow-600 hover:bg-yellow-500 text-white font-medium text-sm px-4 py-2 rounded-full transition">ติดต่อเรา</a>
       </div>
-      <!-- Mobile Menu Button -->
+      <!-- Mobile Button -->
       <button class="md:hidden text-white" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -133,304 +116,459 @@
     </div>
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="md:hidden bg-amber-900 px-4 pb-4">
-      <a href="index.html" class="block text-white py-2 border-b border-amber-800 font-medium">หน้าแรก</a>
-      <a href="#about" class="block text-white py-2 border-b border-amber-800 font-medium">เกี่ยวกับเรา</a>
-      <a href="#schedule" class="block text-white py-2 border-b border-amber-800 font-medium">กิจกรรม</a>
-      <a href="#gallery" class="block text-white py-2 border-b border-amber-800 font-medium">แกลเลอรี</a>
-      <a href="page.html" class="block text-white py-2 border-b border-amber-800 font-medium">เจดีย์</a>
-      <a href="#contact" class="block text-white py-2 font-medium">ติดต่อเรา</a>
+      <a href="#" onclick="showPage('home');closeMobile();" class="block text-white py-2 border-b border-amber-800 font-medium">หน้าแรก</a>
+      <a href="#" onclick="showPage('home');setTimeout(()=>scrollTo('about'),100);closeMobile();" class="block text-white py-2 border-b border-amber-800 font-medium">เกี่ยวกับเรา</a>
+      <a href="#" onclick="showPage('home');setTimeout(()=>scrollTo('schedule'),100);closeMobile();" class="block text-white py-2 border-b border-amber-800 font-medium">กิจกรรม</a>
+      <a href="#" onclick="showPage('home');setTimeout(()=>scrollTo('gallery'),100);closeMobile();" class="block text-white py-2 border-b border-amber-800 font-medium">แกลเลอรี</a>
+      <a href="#" onclick="showPage('stupa');closeMobile();" class="block text-white py-2 border-b border-amber-800 font-medium">เจดีย์</a>
+      <a href="#" onclick="showPage('home');setTimeout(()=>scrollTo('contact'),100);closeMobile();" class="block text-white py-2 font-medium">ติดต่อเรา</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-bg min-h-screen flex items-center justify-center text-center relative px-4 py-20">
-    <div class="floating-lotus" style="top:10%;left:5%;">☸</div>
-    <div class="floating-lotus" style="top:20%;right:8%;animation-delay:3s;">☸</div>
-    <div class="floating-lotus" style="bottom:15%;left:15%;animation-delay:5s;">☸</div>
+  <!-- ===== PAGE: HOME ===== -->
+  <div id="page-home" class="page-section active">
 
-    <div class="relative z-10 max-w-4xl mx-auto scroll-reveal visible">
-      <!-- Logo Circle -->
-      <div class="w-24 h-24 mx-auto mb-8 rounded-full gold-gradient flex items-center justify-center shadow-2xl ring-4 ring-yellow-400 ring-opacity-40">
-        <span class="text-white text-4xl font-bold">ธ</span>
-      </div>
+    <!-- Hero Section -->
+    <section class="hero-bg relative" style="min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;">
+      <!-- Hero Image (shown when available, overlaid on gradient) -->
+      <img
+        src="https://raw.githubusercontent.com/Purivaro/Dhammakaya-Tennessee-Temple/main/CKTW0225-Panod_2_2.jpg"
+        alt="วัดพระธรรมกายเทนเนสซี"
+        class="hero-img"
+        onerror="this.style.display='none';"
+      >
 
-      <div class="inline-block bg-yellow-800 bg-opacity-50 text-yellow-200 text-xs font-semibold px-4 py-1 rounded-full mb-6 tracking-wider uppercase border border-yellow-600 border-opacity-40">
-        🙏 Dhammakaya Tennessee Temple
-      </div>
+      <div class="floating-lotus" style="top:10%;left:5%;">☸</div>
+      <div class="floating-lotus" style="top:20%;right:8%;animation-delay:3s;">☸</div>
+      <div class="floating-lotus" style="bottom:15%;left:15%;animation-delay:5s;">☸</div>
 
-      <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" style="text-shadow: 0 2px 20px rgba(0,0,0,0.5);">
-        สร้างวัดให้เป็นวัด<br>
-        <span class="text-yellow-300">สร้างพระให้เป็นพระ</span><br>
-        สร้างคนให้เป็นคนดี
-      </h1>
-      <p class="text-xl text-yellow-200 mb-3 font-medium">วัดพระธรรมกายเทนเนสซี</p>
-      <p class="text-base text-amber-300 mb-10">ศูนย์ปฏิบัติธรรมแห่งรัฐเทนเนสซี สหรัฐอเมริกา</p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#about" class="gold-gradient text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:opacity-90 transition text-base">
-          🏛️ เกี่ยวกับวัด
-        </a>
-        <a href="#schedule" class="bg-transparent border-2 border-yellow-400 text-yellow-300 font-semibold px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-white transition text-base">
-          📅 ตารางกิจกรรม
-        </a>
-      </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 scroll-reveal">
-        <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ประวัติความเป็นมา</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">เกี่ยวกับวัด</h2>
-        <div class="section-divider mb-4"></div>
-        <p class="text-gray-500 max-w-xl mx-auto text-base">ก่อตั้งด้วยความศรัทธาและความมุ่งมั่นของพุทธศาสนิกชนในรัฐเทนเนสซี</p>
-      </div>
-
-      <!-- 3-column cards as instructed by ai_instruction -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
-        <!-- Card 1 -->
-        <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal">
-          <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
-            <span class="text-white text-2xl">🕍</span>
-          </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">จุดเริ่มต้น (2542)</h3>
-          <p class="text-gray-600 text-sm leading-relaxed text-center">
-            ปี พ.ศ. 2542 กลุ่มผู้รักการปฏิบัติธรรมในรัฐเทนเนสซีได้รวมตัวกัน เดินทางไปวัดพระธรรมกายจอร์เจีย และจัดกิจกรรมงานบุญที่บ้านของสาธุชน
-          </p>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 py-24">
+        <!-- Logo large -->
+        <div class="mx-auto mb-8" style="width:96px;height:96px;position:relative;">
+          <img
+            src="https://raw.githubusercontent.com/Purivaro/Dhammakaya-Tennessee-Temple/main/LOGO_2_1.png"
+            alt="โลโก้วัด"
+            class="logo-img-large shadow-2xl ring-4 ring-yellow-400"
+            style="ring-opacity:0.4;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="logo-img-large shadow-2xl gold-gradient img-placeholder text-4xl font-bold ring-4 ring-yellow-400" style="display:none;">ธ</div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal">
-          <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
-            <span class="text-white text-2xl">🏗️</span>
-          </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">ก่อตั้งวัด (2555)</h3>
-          <p class="text-gray-600 text-sm leading-relaxed text-center">
-            ปี พ.ศ. 2555 ชุมชนพุทธร่วมใจกันซื้อสถานที่และอาคาร ปักหลักสร้างวัดพระธรรมกายเทนเนสซี และมีคณะทีมงานจากจอร์เจียมาประจำในวันที่ 31 มีนาคม
-          </p>
+        <div class="inline-block bg-yellow-800 bg-opacity-50 text-yellow-200 text-xs font-semibold px-4 py-1 rounded-full mb-6 tracking-wider border border-yellow-600 border-opacity-40">
+          🙏 Dhammakaya Tennessee Temple
         </div>
 
-        <!-- Card 3 -->
-        <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal">
-          <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
-            <span class="text-white text-2xl">✨</span>
-          </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">การขยายตัว (2567)</h3>
-          <p class="text-gray-600 text-sm leading-relaxed text-center">
-            ได้รับการอนุมัติแผนการก่อสร้างอาคารปฏิบัติธรรม "แก้วธรรมชัยรัตนอนันต์" เพื่อบูชาธรรมวันอายุวัฒนมงคล 80 ปี หลวงพ่อธัมมชโย
-          </p>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" style="text-shadow:0 2px 20px rgba(0,0,0,0.5);">
+          สร้างวัดให้เป็นวัด<br>
+          <span class="text-yellow-300">สร้างพระให้เป็นพระ</span><br>
+          สร้างคนให้เป็นคนดี
+        </h1>
+        <p class="text-xl text-yellow-200 mb-3 font-medium">วัดพระธรรมกายเทนเนสซี</p>
+        <p class="text-base text-amber-300 mb-10">ศูนย์ปฏิบัติธรรมแห่งรัฐเทนเนสซี สหรัฐอเมริกา</p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" onclick="scrollTo('about')" class="gold-gradient text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:opacity-90 transition text-base">
+            🏛️ เกี่ยวกับวัด
+          </a>
+          <a href="#" onclick="scrollTo('schedule')" class="bg-transparent border-2 border-yellow-400 text-yellow-300 font-semibold px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-white transition text-base">
+            📅 ตารางกิจกรรม
+          </a>
         </div>
       </div>
-
-      <!-- Full Description -->
-      <div class="bg-amber-50 rounded-2xl p-8 border-l-4 border-amber-600 scroll-reveal">
-        <p class="text-gray-700 leading-relaxed text-base mb-4">
-          เมื่อปี พ.ศ.2542 (1999) จุดเริ่มต้นมาจากกลุ่มผู้รักการปฏิบัติธรรมที่รัฐเทนเนสซี เนื่องจากในขณะนั้น รัฐเทนเนสซีนี้ ยังไม่ได้มีศูนย์สาขาของวัดพระธรรมกาย จึงได้ไปร่วมงานบุญใหญ่และกิจกรรมต่างๆ ที่วัดพระธรรมกายจอร์เจีย เมื่อมีหมู่คณะเยอะขึ้น ได้จัดกิจกรรมงานบุญที่บ้านของ กัลฯ จันทร์ - กัลฯ ศรีวิไล อัมคา โดยนิมนต์พระอาจารย์จากจอร์เจีย ควบคู่กับการแสวงหาสถานที่เพื่อจะสร้างเป็นวัด
-        </p>
-        <p class="text-gray-700 leading-relaxed text-base mb-4">
-          ต่อมาเมื่อปี พ.ศ.2555 (2012) ก็ได้เจอสถานที่ และมีอาคาร 1 หลัง จึงได้ร่วมใจกันซื้อ และปักหลักที่จะสร้างวัดขึ้นในรัฐเทนเนสซีแห่งนี้ และในวันที่ 31 มีนาคม พ.ศ.2555 ก็ได้มีคณะทีมงานจากรัฐจอร์เจียเดินทางมาอยู่ประจำที่รัฐเทนเนสซี
-        </p>
-        <p class="text-gray-700 leading-relaxed text-base">
-          นับตั้งแต่วันนั้นเป็นต้นมา สถานที่แห่งนี้ เป็นบุญเขต และบุญสถานแห่งการสั่งสมบุญเรื่อยมา ในทุกๆวัน ทุกๆสัปดาห์ ทุกๆเดือน และทุกๆกิจกรรมในวันสำคัญทางพระพุทธศาสนา วิชชาธรรมกาย ตราบจนถึงปัจจุบัน
-        </p>
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Highlight Banner -->
-  <section class="py-16 px-4 gold-gradient">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center scroll-reveal">
-        <p class="text-yellow-100 text-sm font-semibold tracking-widest uppercase mb-3">ข่าวดีจากวัด</p>
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-          อาคารปฏิบัติธรรมหลังใหม่ "แก้วธรรมชัยรัตนอนันต์"
-        </h2>
-        <p class="text-yellow-100 max-w-3xl mx-auto text-base leading-relaxed mb-6">
-          ทางการได้อนุมัติแผนการก่อสร้างอาคารปฏิบัติธรรมหลังใหม่แล้ว หลังจากที่ทางวัดได้ยื่นเรื่องไปนานนับปี พร้อมประดิษฐานดวงแก้ว "แก้วบรมจักรพรรดิรัตนอนันต์" ขนาด 29.7 cm. โดยมีหลวงพ่อทัตตชีโว เมตตาอธิษฐานจิตปิดแผ่นทอง
-        </p>
-        <a href="page.html" class="inline-block bg-white text-amber-800 font-bold px-8 py-3 rounded-full hover:bg-yellow-50 transition shadow-lg">
-          ชมเจดีย์วัด →
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 scroll-reveal">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ประวัติความเป็นมา</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">เกี่ยวกับวัด</h2>
+          <div class="section-divider mb-4"></div>
+          <p class="text-gray-500 max-w-xl mx-auto">ก่อตั้งด้วยความศรัทธาของพุทธศาสนิกชนในรัฐเทนเนสซี</p>
+        </div>
 
-  <!-- Schedule Section -->
-  <section id="schedule" class="py-20 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 scroll-reveal">
-        <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">กิจกรรมประจำ</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">ตารางกิจกรรม</h2>
-        <div class="section-divider mb-4"></div>
-        <p class="text-gray-500 max-w-xl mx-auto">ร่วมสร้างบุญและปฏิบัติธรรมกับเรา</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
-          <div class="text-3xl mb-3">🌅</div>
-          <h3 class="font-bold text-gray-800 mb-2">ทุกวัน</h3>
-          <p class="text-sm text-gray-600">สวดมนต์ทำวัตรเช้า-เย็น และนั่งสมาธิ</p>
-          <div class="mt-3 text-xs text-amber-700 font-semibold">06:00 - 07:00 น.</div>
-        </div>
-        <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
-          <div class="text-3xl mb-3">📿</div>
-          <h3 class="font-bold text-gray-800 mb-2">ทุกสัปดาห์</h3>
-          <p class="text-sm text-gray-600">กิจกรรมปฏิบัติธรรมกลุ่มและบรรยายธรรม</p>
-          <div class="mt-3 text-xs text-amber-700 font-semibold">วันอาทิตย์ 10:00 น.</div>
-        </div>
-        <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
-          <div class="text-3xl mb-3">🌸</div>
-          <h3 class="font-bold text-gray-800 mb-2">ทุกเดือน</h3>
-          <p class="text-sm text-gray-600">กิจกรรมงานบุญ ตักบาตร และทำทาน</p>
-          <div class="mt-3 text-xs text-amber-700 font-semibold">วันขึ้น 15 ค่ำ</div>
-        </div>
-        <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
-          <div class="text-3xl mb-3">🎊</div>
-          <h3 class="font-bold text-gray-800 mb-2">วันสำคัญ</h3>
-          <p class="text-sm text-gray-600">วันวิสาขบูชา มาฆบูชา อาสาฬหบูชา</p>
-          <div class="mt-3 text-xs text-amber-700 font-semibold">ตามปฏิทินพุทธ</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="py-20 px-4" style="background-color: #F5F0E8;">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 scroll-reveal">
-        <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ภาพกิจกรรม</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">แกลเลอรีวัด</h2>
-        <div class="section-divider mb-4"></div>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Gallery placeholder cards with beautiful gradient backgrounds -->
-        <div class="rounded-2xl overflow-hidden h-48 md:h-56" style="background: linear-gradient(135deg, #8B6914, #C4960E);">
-          <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
-            <span class="text-4xl mb-2">🛕</span>
-            <span class="text-sm font-medium">วิหารพระ</span>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden h-48 md:h-56 md:col-span-2" style="background: linear-gradient(135deg, #4A2C12, #8B6914);">
-          <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
-            <span class="text-4xl mb-2">☸️</span>
-            <span class="text-sm font-medium">กิจกรรมสวดมนต์</span>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden h-48 md:h-56 md:col-span-2" style="background: linear-gradient(135deg, #6B4F0E, #D4AF37);">
-          <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
-            <span class="text-4xl mb-2">🌸</span>
-            <span class="text-sm font-medium">งานบุญประจำปี</span>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden h-48 md:h-56" style="background: linear-gradient(135deg, #2C1810, #8B6914);">
-          <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
-            <span class="text-4xl mb-2">🙏</span>
-            <span class="text-sm font-medium">นั่งสมาธิ</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 scroll-reveal">
-        <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ติดต่อเรา</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">ข้อมูลติดต่อ</h2>
-        <div class="section-divider mb-4"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-        <!-- Contact Info -->
-        <div class="space-y-6 scroll-reveal">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
-              <span class="text-white text-lg">📍</span>
+        <!-- 3-column cards (per ai_instruction) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+          <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
+              <span class="text-white text-2xl">🕍</span>
             </div>
-            <div>
-              <h4 class="font-bold text-gray-800 mb-1">ที่อยู่</h4>
-              <p class="text-gray-600">Gauge, Tennessee, USA</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
-              <span class="text-white text-lg">📞</span>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800 mb-1">โทรศัพท์</h4>
-              <a href="tel:0835406300" class="text-amber-700 hover:text-amber-900 font-medium">083-540-6300</a>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
-              <span class="text-white text-lg">✉️</span>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800 mb-1">อีเมล</h4>
-              <a href="mailto:tennessee@gmail.com" class="text-amber-700 hover:text-amber-900 font-medium">tennessee@gmail.com</a>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
-              <span class="text-white text-lg">💬</span>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800 mb-1">Line ID</h4>
-              <p class="text-amber-700 font-medium">nesese.id</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Map/CTA Card -->
-        <div class="scroll-reveal">
-          <div class="hero-bg rounded-3xl p-8 text-center shadow-xl">
-            <div class="text-5xl mb-4">🙏</div>
-            <h3 class="text-xl font-bold text-white mb-3">ยินดีต้อนรับทุกท่าน</h3>
-            <p class="text-amber-200 text-sm leading-relaxed mb-6">
-              วัดพระธรรมกายเทนเนสซีเปิดต้อนรับผู้มีจิตศรัทธาทุกท่าน ไม่ว่าจะเป็นชาวไทยหรือชาวต่างชาติ มาร่วมกันปฏิบัติธรรม สร้างบุญกุศล และสืบทอดพระพุทธศาสนาในแผ่นดินอเมริกา
+            <h3 class="text-lg font-bold text-gray-800 mb-3">จุดเริ่มต้น (2542)</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              กลุ่มผู้รักการปฏิบัติธรรมในรัฐเทนเนสซีรวมตัวกัน เดินทางร่วมงานบุญที่วัดพระธรรมกายจอร์เจีย และจัดกิจกรรมที่บ้านสาธุชน
             </p>
-            <a href="mailto:tennessee@gmail.com" class="inline-block gold-gradient text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition shadow-lg text-sm">
-              ส่งข้อความหาเรา
-            </a>
+          </div>
+          <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
+              <span class="text-white text-2xl">🏗️</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">ก่อตั้งวัด (2555)</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              ชุมชนพุทธร่วมใจกันซื้อสถานที่และอาคาร ปักหลักสร้างวัด พร้อมคณะทีมงานจากจอร์เจียมาประจำเมื่อ 31 มีนาคม พ.ศ. 2555
+            </p>
+          </div>
+          <div class="card-hover bg-amber-50 rounded-2xl p-8 border border-amber-100 shadow-sm scroll-reveal text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 shadow-md mx-auto">
+              <span class="text-white text-2xl">✨</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">การขยายตัว (2567)</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              ได้รับอนุมัติแผนก่อสร้างอาคารปฏิบัติธรรม "แก้วธรรมชัยรัตนอนันต์" เพื่อบูชาธรรมวันอายุวัฒนมงคล 80 ปี หลวงพ่อธัมมชโย
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 rounded-2xl p-8 border-l-4 border-amber-600 scroll-reveal">
+          <p class="text-gray-700 leading-relaxed text-base mb-4">
+            เมื่อปี พ.ศ.2542 (1999) จุดเริ่มต้นมาจากกลุ่มผู้รักการปฏิบัติธรรมที่รัฐเทนเนสซี เนื่องจากในขณะนั้น ยังไม่ได้มีศูนย์สาขาของวัดพระธรรมกาย จึงได้ไปร่วมงานบุญใหญ่และกิจกรรมต่างๆ ที่วัดพระธรรมกายจอร์เจีย เมื่อมีหมู่คณะเยอะขึ้น ได้จัดกิจกรรมงานบุญที่บ้านของ กัลฯ จันทร์ - กัลฯ ศรีวิไล อัมคา โดยนิมนต์พระอาจารย์จากจอร์เจีย ควบคู่กับการแสวงหาสถานที่เพื่อจะสร้างเป็นวัด
+          </p>
+          <p class="text-gray-700 leading-relaxed text-base mb-4">
+            ต่อมาเมื่อปี พ.ศ.2555 (2012) ก็ได้เจอสถานที่ และมีอาคาร 1 หลัง จึงได้ร่วมใจกันซื้อ และปักหลักที่จะสร้างวัดขึ้นในรัฐเทนเนสซีแห่งนี้ และในวันที่ 31 มีนาคม พ.ศ.2555 ก็ได้มีคณะทีมงานจากรัฐจอร์เจียเดินทางมาอยู่ประจำที่รัฐเทนเนสซี
+          </p>
+          <p class="text-gray-700 leading-relaxed text-base">
+            นับตั้งแต่วันนั้นเป็นต้นมา สถานที่แห่งนี้เป็นบุญเขตและบุญสถานแห่งการสั่งสมบุญเรื่อยมา ในทุกๆวัน ทุกๆสัปดาห์ ทุกๆเดือน และทุกๆกิจกรรมในวันสำคัญทางพระพุทธศาสนา วิชชาธรรมกาย ตราบจนถึงปัจจุบัน
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlight Banner -->
+    <section class="py-16 px-4 gold-gradient">
+      <div class="max-w-6xl mx-auto text-center scroll-reveal">
+        <p class="text-yellow-100 text-sm font-semibold tracking-widest uppercase mb-3">ข่าวดีจากวัด</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">อาคารปฏิบัติธรรม "แก้วธรรมชัยรัตนอนันต์"</h2>
+        <p class="text-yellow-100 max-w-3xl mx-auto text-base leading-relaxed mb-6">
+          ทางการได้อนุมัติแผนการก่อสร้างอาคารปฏิบัติธรรมหลังใหม่แล้ว พร้อมประดิษฐานดวงแก้ว "แก้วบรมจักรพรรดิรัตนอนันต์" ขนาด 29.7 cm. โดยมีหลวงพ่อทัตตชีโว เมตตาอธิษฐานจิตปิดแผ่นทอง
+        </p>
+        <button onclick="showPage('stupa')" class="inline-block bg-white text-amber-800 font-bold px-8 py-3 rounded-full hover:bg-yellow-50 transition shadow-lg">
+          ชมเจดีย์วัด →
+        </button>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-20 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 scroll-reveal">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">กิจกรรมประจำ</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">ตารางกิจกรรม</h2>
+          <div class="section-divider mb-4"></div>
+          <p class="text-gray-500 max-w-xl mx-auto">ร่วมสร้างบุญและปฏิบัติธรรมกับเรา</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
+            <div class="text-3xl mb-3">🌅</div>
+            <h3 class="font-bold text-gray-800 mb-2">ทุกวัน</h3>
+            <p class="text-sm text-gray-600">สวดมนต์ทำวัตรเช้า-เย็น และนั่งสมาธิ</p>
+            <div class="mt-3 text-xs text-amber-700 font-semibold">06:00 - 07:00 น.</div>
+          </div>
+          <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
+            <div class="text-3xl mb-3">📿</div>
+            <h3 class="font-bold text-gray-800 mb-2">ทุกสัปดาห์</h3>
+            <p class="text-sm text-gray-600">กิจกรรมปฏิบัติธรรมกลุ่มและบรรยายธรรม</p>
+            <div class="mt-3 text-xs text-amber-700 font-semibold">วันอาทิตย์ 10:00 น.</div>
+          </div>
+          <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
+            <div class="text-3xl mb-3">🌸</div>
+            <h3 class="font-bold text-gray-800 mb-2">ทุกเดือน</h3>
+            <p class="text-sm text-gray-600">กิจกรรมงานบุญ ตักบาตร และทำทาน</p>
+            <div class="mt-3 text-xs text-amber-700 font-semibold">วันขึ้น 15 ค่ำ</div>
+          </div>
+          <div class="card-hover bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 shadow-sm scroll-reveal">
+            <div class="text-3xl mb-3">🎊</div>
+            <h3 class="font-bold text-gray-800 mb-2">วันสำคัญ</h3>
+            <p class="text-sm text-gray-600">วันวิสาขบูชา มาฆบูชา อาสาฬหบูชา</p>
+            <div class="mt-3 text-xs text-amber-700 font-semibold">ตามปฏิทินพุทธ</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4" style="background-color:#F5F0E8;">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 scroll-reveal">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ภาพกิจกรรม</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">แกลเลอรีวัด</h2>
+          <div class="section-divider mb-4"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl overflow-hidden h-48 md:h-56 scroll-reveal" style="background:linear-gradient(135deg,#8B6914,#C4960E);">
+            <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
+              <span class="text-4xl mb-2">🛕</span><span class="text-sm font-medium">วิหารพระ</span>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden h-48 md:h-56 md:col-span-2 scroll-reveal" style="background:linear-gradient(135deg,#4A2C12,#8B6914);">
+            <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
+              <span class="text-4xl mb-2">☸️</span><span class="text-sm font-medium">กิจกรรมสวดมนต์</span>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden h-48 md:h-56 md:col-span-2 scroll-reveal" style="background:linear-gradient(135deg,#6B4F0E,#D4AF37);">
+            <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
+              <span class="text-4xl mb-2">🌸</span><span class="text-sm font-medium">งานบุญประจำปี</span>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden h-48 md:h-56 scroll-reveal" style="background:linear-gradient(135deg,#2C1810,#8B6914);">
+            <div class="w-full h-full flex flex-col items-center justify-center text-white opacity-80">
+              <span class="text-4xl mb-2">🙏</span><span class="text-sm font-medium">นั่งสมาธิ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 scroll-reveal">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ติดต่อเรา</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">ข้อมูลติดต่อ</h2>
+          <div class="section-divider mb-4"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          <div class="space-y-6 scroll-reveal">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
+                <span class="text-white text-lg">📍</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">ที่อยู่</h4>
+                <p class="text-gray-600">Gauge, Tennessee, USA</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
+                <span class="text-white text-lg">📞</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">โทรศัพท์</h4>
+                <a href="tel:0835406300" class="text-amber-700 hover:text-amber-900 font-medium">083-540-6300</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
+                <span class="text-white text-lg">✉️</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">อีเมล</h4>
+                <a href="mailto:tennessee@gmail.com" class="text-amber-700 hover:text-amber-900 font-medium">tennessee@gmail.com</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 shadow-md">
+                <span class="text-white text-lg">💬</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 mb-1">Line ID</h4>
+                <p class="text-amber-700 font-medium">nesese.id</p>
+              </div>
+            </div>
+          </div>
+          <div class="scroll-reveal">
+            <div class="hero-bg rounded-3xl p-8 text-center shadow-xl">
+              <div class="text-5xl mb-4">🙏</div>
+              <h3 class="text-xl font-bold text-white mb-3">ยินดีต้อนรับทุกท่าน</h3>
+              <p class="text-amber-200 text-sm leading-relaxed mb-6">
+                วัดพระธรรมกายเทนเนสซีเปิดต้อนรับผู้มีจิตศรัทธาทุกท่าน มาร่วมกันปฏิบัติธรรม สร้างบุญกุศล และสืบทอดพระพุทธศาสนาในแผ่นดินอเมริกา
+              </p>
+              <a href="mailto:tennessee@gmail.com" class="inline-block gold-gradient text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition shadow-lg text-sm">
+                ส่งข้อความหาเรา
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ===== PAGE: STUPA (เจดีย์) ===== -->
+  <div id="page-stupa" class="page-section">
+
+    <!-- Hero -->
+    <section class="hero-bg relative" style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;">
+      <div class="floating-lotus" style="top:5%;left:3%;">☸</div>
+      <div class="floating-lotus" style="top:15%;right:5%;animation-delay:4s;">☸</div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 py-24">
+        <div class="w-28 h-28 mx-auto mb-8 rounded-full gold-gradient flex items-center justify-center shadow-2xl" style="box-shadow:0 0 60px rgba(212,175,55,0.3);">
+          <span class="text-white text-5xl">🏯</span>
+        </div>
+        <div class="inline-block bg-yellow-900 bg-opacity-50 text-yellow-200 text-xs font-semibold px-5 py-1.5 rounded-full mb-6 tracking-wider border border-yellow-600 border-opacity-40">
+          ☸️ สัญลักษณ์แห่งสันติภาพโลก
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4" style="text-shadow:0 2px 20px rgba(0,0,0,0.5);">
+          สถาปนาองค์พระเจดีย์
+        </h1>
+        <p class="text-2xl text-yellow-300 mb-4 font-semibold">พระเจดีย์เพื่อสร้างสันติภาพโลก</p>
+        <p class="text-amber-200 text-base mb-10 max-w-2xl mx-auto leading-relaxed">
+          เจดีย์ศักดิ์สิทธิ์แห่งวัดพระธรรมกายเทนเนสซี สัญลักษณ์แห่งความสงบและสันติที่ประดิษฐานในแผ่นดินอเมริกา
+        </p>
+        <button onclick="scrollTo('stupa-info')" class="gold-gradient text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:opacity-90 transition text-base inline-block">
+          🏯 อ่านเพิ่มเติม
+        </button>
+      </div>
+    </section>
+
+    <!-- Stupa Content -->
+    <section id="stupa-info" class="py-20 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">ความสำคัญ</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">พระเจดีย์ศักดิ์สิทธิ์</h2>
+          <div class="section-divider mb-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          <!-- Stupa SVG Art -->
+          <div class="rounded-3xl overflow-hidden flex items-center justify-center" style="height:320px;background:linear-gradient(135deg,#2C1810 0%,#8B6914 60%,#D4AF37 100%);">
+            <div class="text-center">
+              <svg width="160" height="220" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto opacity-90">
+                <polygon points="80,10 70,50 90,50" fill="#D4AF37"/>
+                <ellipse cx="80" cy="55" rx="15" ry="5" fill="#C4960E"/>
+                <ellipse cx="80" cy="65" rx="20" ry="6" fill="#D4AF37"/>
+                <ellipse cx="80" cy="95" rx="35" ry="35" fill="#C4960E"/>
+                <ellipse cx="80" cy="90" rx="33" ry="33" fill="#D4AF37" opacity="0.7"/>
+                <rect x="45" y="128" width="70" height="14" rx="3" fill="#C4960E"/>
+                <rect x="38" y="140" width="84" height="14" rx="3" fill="#8B6914"/>
+                <rect x="30" y="152" width="100" height="16" rx="3" fill="#6B4F0E"/>
+                <rect x="20" y="166" width="120" height="18" rx="3" fill="#4A2C12"/>
+                <rect x="10" y="182" width="140" height="10" rx="2" fill="#3A1E08"/>
+              </svg>
+              <p class="text-yellow-200 text-sm font-medium mt-2">พระเจดีย์วัดพระธรรมกายเทนเนสซี</p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-gray-800">ความหมายของพระเจดีย์</h3>
+            <p class="text-gray-600 leading-relaxed">
+              พระเจดีย์เป็นสัญลักษณ์ศักดิ์สิทธิ์ของพระพุทธศาสนา แทนความบริสุทธิ์และการหลุดพ้น เจดีย์ของวัดพระธรรมกายเทนเนสซีสร้างขึ้นเพื่อเป็นจุดศูนย์รวมจิตใจของชาวพุทธในรัฐเทนเนสซีและพื้นที่ใกล้เคียง
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              การสร้างเจดีย์เป็นการสะสมบุญกุศลอันยิ่งใหญ่ ผู้ที่มีส่วนร่วมในการก่อสร้างจะได้รับอานิสงส์แห่งบุญอันไม่มีประมาณ และยังเป็นการสืบทอดพระพุทธศาสนาในแผ่นดินอเมริกา
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+                <div class="text-2xl mb-1">🌍</div>
+                <div class="text-sm font-bold text-gray-800">สันติภาพโลก</div>
+              </div>
+              <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-100">
+                <div class="text-2xl mb-1">☮️</div>
+                <div class="text-sm font-bold text-gray-800">ความสงบ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kaew Dhammachai -->
+    <section class="py-20 px-4" style="background-color:#F5F0E8;">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="text-yellow-700 font-semibold text-sm tracking-widest uppercase">โครงการพิเศษ</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">แก้วธรรมชัยรัตนอนันต์</h2>
+          <div class="section-divider mb-4"></div>
+          <p class="text-gray-500 max-w-2xl mx-auto">อาคารปฏิบัติธรรมหลังใหม่ เพื่อบูชาธรรมวันอายุวัฒนมงคล 80 ปี หลวงพ่อธัมมชโย</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div class="card-hover bg-white rounded-2xl p-8 shadow-md border border-amber-100 text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mx-auto mb-5 shadow-lg"><span class="text-white text-2xl">💎</span></div>
+            <h3 class="font-bold text-gray-800 text-lg mb-3">แก้วธรรมชัยรัตนอนันต์</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">ชื่ออาคารปฏิบัติธรรมและส่วนกลางหลังใหม่ น้อมบูชาธรรมแด่หลวงพ่อธัมมชโย</p>
+          </div>
+          <div class="card-hover bg-white rounded-2xl p-8 shadow-md border border-amber-100 text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mx-auto mb-5 shadow-lg"><span class="text-white text-2xl">🔮</span></div>
+            <h3 class="font-bold text-gray-800 text-lg mb-3">แก้วบรมจักรพรรดิรัตนอนันต์</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">ดวงแก้วขนาด 29.7 cm. ประดิษฐานเพื่อเป็นนิมิตในการปฏิบัติธรรม</p>
+          </div>
+          <div class="card-hover bg-white rounded-2xl p-8 shadow-md border border-amber-100 text-center">
+            <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mx-auto mb-5 shadow-lg"><span class="text-white text-2xl">🙏</span></div>
+            <h3 class="font-bold text-gray-800 text-lg mb-3">พิธีอธิษฐานจิต</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">หลวงพ่อทัตตชีโว เมตตาอธิษฐานจิต ปิดแผ่นทอง วันพระขึ้น 15 ค่ำ เดือน 4 วันที่ 24 มีนาคม พ.ศ. 2567</p>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-md border border-amber-100">
+          <h3 class="text-2xl font-bold text-gray-800 mb-8 text-center">เหตุการณ์สำคัญ</h3>
+          <div class="relative pl-8 border-l-2 border-amber-200 space-y-8">
+            <div class="relative">
+              <div class="absolute -left-10 top-1 w-6 h-6 rounded-full gold-gradient flex items-center justify-center shadow-md"><div class="w-2 h-2 bg-white rounded-full"></div></div>
+              <div class="text-xs text-amber-600 font-semibold mb-1 uppercase tracking-wider">พ.ศ. 2542 / 1999</div>
+              <h4 class="font-bold text-gray-800 mb-1">จุดเริ่มต้น</h4>
+              <p class="text-gray-600 text-sm">กลุ่มพุทธศาสนิกชนในรัฐเทนเนสซีรวมตัวกันปฏิบัติธรรม</p>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-10 top-1 w-6 h-6 rounded-full gold-gradient flex items-center justify-center shadow-md"><div class="w-2 h-2 bg-white rounded-full"></div></div>
+              <div class="text-xs text-amber-600 font-semibold mb-1 uppercase tracking-wider">พ.ศ. 2555 / 2012</div>
+              <h4 class="font-bold text-gray-800 mb-1">ก่อตั้งวัด</h4>
+              <p class="text-gray-600 text-sm">ซื้อที่ดินและอาคาร เริ่มต้นสร้างวัดอย่างเป็นทางการ</p>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-10 top-1 w-6 h-6 rounded-full gold-gradient flex items-center justify-center shadow-md"><div class="w-2 h-2 bg-white rounded-full"></div></div>
+              <div class="text-xs text-amber-600 font-semibold mb-1 uppercase tracking-wider">พ.ศ. 2567 / 2024</div>
+              <h4 class="font-bold text-gray-800 mb-1">อนุมัติแผนก่อสร้างอาคารใหม่</h4>
+              <p class="text-gray-600 text-sm">ได้รับอนุมัติแผนก่อสร้างอาคาร "แก้วธรรมชัยรัตนอนันต์" และประดิษฐานดวงแก้วบรมจักรพรรดิรัตนอนันต์</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4 hero-bg">
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="text-5xl mb-6">🌸</div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">ร่วมสร้างบุญกับเรา</h2>
+        <p class="text-amber-200 text-base leading-relaxed mb-8 max-w-2xl mx-auto">
+          การสร้างวัด สร้างเจดีย์ และสนับสนุนกิจกรรมทางพระพุทธศาสนา เป็นบุญกุศลอันประเสริฐ ขอเชิญร่วมเป็นส่วนหนึ่งของการสืบทอดพระพุทธศาสนาในแผ่นดินอเมริกา
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="showPage('home');setTimeout(()=>scrollTo('contact'),100);" class="gold-gradient text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:opacity-90 transition">📞 ติดต่อวัด</button>
+          <button onclick="showPage('home')" class="bg-transparent border-2 border-yellow-400 text-yellow-300 font-semibold px-8 py-3 rounded-full hover:bg-yellow-400 hover:text-white transition">🏠 กลับหน้าแรก</button>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-stupa -->
+
+
+  <!-- Footer (always visible) -->
   <footer class="hero-bg py-12 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold">ธ</div>
+            <img
+              src="https://raw.githubusercontent.com/Purivaro/Dhammakaya-Tennessee-Temple/main/LOGO_2_1.png"
+              alt="โลโก้"
+              class="logo-img shadow-md"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="logo-img gold-gradient img-placeholder text-lg font-bold" style="display:none;">ธ</div>
             <div>
               <div class="text-white font-bold text-sm">วัดพระธรรมกายเทนเนสซี</div>
               <div class="text-yellow-400 text-xs">Dhammakaya Tennessee Temple</div>
             </div>
           </div>
-          <p class="text-amber-200 text-sm leading-relaxed">
-            ศูนย์ปฏิบัติธรรมแห่งรัฐเทนเนสซี สหรัฐอเมริกา ก่อตั้งโดยกลุ่มพุทธศาสนิกชนผู้ศรัทธา
-          </p>
+          <p class="text-amber-200 text-sm leading-relaxed">ศูนย์ปฏิบัติธรรมแห่งรัฐเทนเนสซี สหรัฐอเมริกา</p>
         </div>
         <div>
           <h4 class="text-yellow-300 font-bold mb-4">เมนูหลัก</h4>
           <ul class="space-y-2">
-            <li><a href="index.html" class="text-amber-300 text-sm hover:text-white transition">หน้าแรก</a></li>
-            <li><a href="#about" class="text-amber-300 text-sm hover:text-white transition">เกี่ยวกับเรา</a></li>
-            <li><a href="#schedule" class="text-amber-300 text-sm hover:text-white transition">ตารางกิจกรรม</a></li>
-            <li><a href="page.html" class="text-amber-300 text-sm hover:text-white transition">เจดีย์วัด</a></li>
+            <li><button onclick="showPage('home')" class="text-amber-300 text-sm hover:text-white transition">หน้าแรก</button></li>
+            <li><button onclick="showPage('home');setTimeout(()=>scrollTo('about'),100);" class="text-amber-300 text-sm hover:text-white transition">เกี่ยวกับเรา</button></li>
+            <li><button onclick="showPage('home');setTimeout(()=>scrollTo('schedule'),100);" class="text-amber-300 text-sm hover:text-white transition">ตารางกิจกรรม</button></li>
+            <li><button onclick="showPage('stupa')" class="text-amber-300 text-sm hover:text-white transition">เจดีย์วัด</button></li>
           </ul>
         </div>
         <div>
@@ -450,27 +588,47 @@
   </footer>
 
   <script>
-    // Scroll reveal animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+    // ─── SPA Page Router ───────────────────────────────────────────
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+      // Show target
+      document.getElementById('page-' + pageId).classList.add('active');
+      // Update nav active states
+      document.querySelectorAll('[id^="nav-"]').forEach(n => n.classList.remove('active'));
+      const navEl = document.getElementById('nav-' + pageId);
+      if (navEl) navEl.classList.add('active');
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Re-run scroll reveal for new page
+      setTimeout(initScrollReveal, 100);
+    }
 
-    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    function scrollTo(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          document.getElementById('mobileMenu').classList.remove('open');
-        }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // ─── Scroll Reveal ─────────────────────────────────────────────
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        if (!el.classList.contains('visible')) observer.observe(el);
       });
+    }
+    initScrollReveal();
+
+    // ─── Prevent default on # links ────────────────────────────────
+    document.querySelectorAll('a[href="#"]').forEach(a => {
+      a.addEventListener('click', e => e.preventDefault());
     });
   </script>
 </body>
